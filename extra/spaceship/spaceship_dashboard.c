@@ -1,12 +1,12 @@
 #include <stdio.h>
 
 void print_dashboard() {
-    char ship_class[64];
+    char ship_class[11];
     unsigned int available_seats;
     unsigned int mission_days;
 
     printf("Input class: ");
-    if (scanf("%63s", ship_class) != 1) {
+    if (scanf("%10s", ship_class) != 1) {
         printf("Invalid input\n");
         return;
     }
