@@ -1,9 +1,28 @@
 #include <stdio.h>
 
 void print_dashboard() {
-    char ship_class[] = "Rakete";
-    unsigned int available_seats = 5;
-    unsigned int mission_days = 1500;
+    char ship_class[64];
+    unsigned int available_seats;
+    unsigned int mission_days;
+
+    printf("Input class: ");
+    if (scanf("%63s", ship_class) != 1) {
+        printf("Invalid input\n");
+        return;
+    }
+
+    printf("Input available seats: ");
+    if (scanf("%d", &available_seats) != 1) {
+        printf("Invalid input\n");
+        return;
+    }
+
+    printf("Input mission days: ");
+    if (scanf("%d", &mission_days) != 1) {
+        printf("Invalid input\n");
+        return;
+    }
+
     unsigned long odometer_km = 123456789;
     float fraction_lightspeed = 0.9;
     float remaining_range_km = 10000.0;
