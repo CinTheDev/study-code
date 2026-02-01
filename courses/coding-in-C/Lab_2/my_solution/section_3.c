@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void print_column_letters() {
-    printf("   ");
+    printf("    ");
 
     for (int column = 0; column < 8; column++) {
         char letter = 'A' + column;
@@ -12,7 +12,7 @@ void print_column_letters() {
 }
 
 void print_horizontal_line() {
-    printf(" ");
+    printf("  ");
 
     for (int column = 0; column < 8; column++) {
         printf("+---");
