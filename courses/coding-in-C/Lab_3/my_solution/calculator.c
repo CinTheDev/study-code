@@ -17,8 +17,6 @@ bool perform_calculation(float* result, float lhs, float rhs, Operation operatio
 Operation char_to_operation(char operation);
 char opertaion_to_char(Operation operation);
 
-bool is_valid_operation(char operation);
-
 bool operation_add(float* result, float lhs, float rhs);
 bool operation_sub(float* result, float lhs, float rhs);
 bool operation_mul(float* result, float lhs, float rhs);
@@ -128,19 +126,6 @@ char opertaion_to_char(Operation operation) {
     }
 
     return '\0';
-}
-
-bool is_valid_operation(char operation) {
-    char valid_operations[] = { '+', '-', '*', '/' };
-    int operations_len = sizeof(valid_operations) / sizeof(valid_operations[0]);
-
-    for (int i = 0; i < operations_len; i++) {
-        if (operation == valid_operations[i]) {
-            return true;
-        }
-    }
-
-    return false;
 }
 
 bool operation_add(float* result, float lhs, float rhs) {
