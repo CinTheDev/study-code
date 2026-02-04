@@ -82,19 +82,19 @@ bool get_operation(char* operation) {
     return true;
 }
 
-bool perform_calculation(float* result, float lhs, float rhs, char operation) {
+bool perform_calculation(float* result, float lhs, float rhs, Operation operation) {
     switch (operation) {
-    case '+':
+    case OP_ADD:
         return operation_add(result, lhs, rhs);
-    case '-':
+    case OP_SUB:
         return operation_sub(result, lhs, rhs);
-    case '*':
+    case OP_MUL:
         return operation_mul(result, lhs, rhs);
-    case '/':
+    case OP_DIV:
         return operation_div(result, lhs, rhs);
     }
 
-    printf("Unknown operation.\n");
+    printf("Undefined operation.\n");
     return false;
 }
 
