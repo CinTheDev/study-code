@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-int get_input_values(float* lhs, float* rhs);
-int get_operation(char* operation);
-float perform_calculation(float lhs, float rhs, char operation);
+bool get_input_values(float* lhs, float* rhs);
+bool get_operation(char* operation);
+bool perform_calculation(float* result, float lhs, float rhs, char operation);
 
 bool is_valid_operation(char operation);
 
@@ -23,7 +23,12 @@ int main() {
         return -1;
     }
 
-    float result = perform_calculation(lhs, rhs, operation);
+    float result = 0.0;
+
+    if (! perform_calculation(&result, lhs, rhs, operation)) {
+        printf("Calculation failed.\n");
+        return -1;
+    }
     printf("The result of %f %c %f = %f\n", lhs, operation, rhs, result);
 
     return 0;
@@ -60,20 +65,24 @@ bool get_operation(char* operation) {
     return true;
 }
 
-float perform_calculation(float lhs, float rhs, char operation) {
+bool perform_calculation(float* result, float lhs, float rhs, char operation) {
     switch (operation) {
     case '+':
-        return lhs + rhs;
+        *result = lhs + rhs;
+        return true;
     case '-':
-        return lhs - rhs;
+        *result = lhs - rhs;
+        return true;
     case '*':
-        return lhs * rhs;
+        *result = lhs * rhs;
+        return true;
     case '/':
-        return lhs / rhs;
+        *result = lhs / rhs;
+        return true;
     }
 
-    // TODO: Print error message if operation is invalid
-    return 0.0;
+    printf("Unknown operation.\n");
+    return false;
 }
 
 bool is_valid_operation(char operation) {
