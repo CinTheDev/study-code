@@ -9,13 +9,13 @@ int main() {
 
     float lhs = 0.0;
     float rhs = 0.0;
-    if (! get_input_values(&lhs, &rhs)) {
+    if (get_input_values(&lhs, &rhs) != 0) {
         printf("Could not read input values.\n");
         return -1;
     }
 
     char operation = '\0';
-    if (! get_operation(&operation)) {
+    if (get_operation(&operation) != 0) {
         printf("Could not read operation.\n");
         return -1;
     }
