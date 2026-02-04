@@ -86,10 +86,10 @@ bool perform_calculation(float* result, float lhs, float rhs, Operation operatio
         return operation_mul(result, lhs, rhs);
     case OP_DIV:
         return operation_div(result, lhs, rhs);
+    default:
+        printf("Undefined operation.\n");
+        return false;
     }
-
-    printf("Undefined operation.\n");
-    return false;
 }
 
 Operation char_to_operation(char operation) {
@@ -102,9 +102,9 @@ Operation char_to_operation(char operation) {
         return OP_MUL;
     case '/':
         return OP_DIV;
+    default:
+        return OP_UNDEFINED;
     }
-
-    return OP_UNDEFINED;
 }
 char opertaion_to_char(Operation operation) {
     switch (operation) {
@@ -116,9 +116,9 @@ char opertaion_to_char(Operation operation) {
         return '*';
     case OP_DIV:
         return '/';
+    default:
+        return '\0';
     }
-
-    return '\0';
 }
 
 bool operation_add(float* result, float lhs, float rhs) {
