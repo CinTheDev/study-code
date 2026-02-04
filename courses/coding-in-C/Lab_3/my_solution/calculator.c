@@ -47,7 +47,15 @@ int get_input_values(float* lhs, float* rhs) {
 }
 
 int get_operation(char* operation) {
-    return -1;
+    char input_operation = '\0';
+
+    printf("Select one operation [+, -, *, /]: ");
+    scanf("%c", &input_operation);
+
+    // TODO: Check validity
+
+    *operation = input_operation;
+    return 0;
 }
 
 float perform_calculation(float lhs, float rhs, char operation) {
