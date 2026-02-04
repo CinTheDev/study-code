@@ -27,7 +27,7 @@ bool operation_mul(float* result, float lhs, float rhs);
 bool operation_div(float* result, float lhs, float rhs);
 
 int main() {
-    printf("Calculator program (will run only once :P)\n");
+    printf("Calculator program\n");
 
     float lhs = 0.0;
     float rhs = 0.0;
