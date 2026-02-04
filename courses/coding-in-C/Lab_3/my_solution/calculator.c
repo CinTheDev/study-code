@@ -7,6 +7,11 @@ bool perform_calculation(float* result, float lhs, float rhs, char operation);
 
 bool is_valid_operation(char operation);
 
+bool operation_add(float* result, float lhs, float rhs);
+bool operation_sub(float* result, float lhs, float rhs);
+bool operation_mul(float* result, float lhs, float rhs);
+bool operation_div(float* result, float lhs, float rhs);
+
 int main() {
     printf("Calculator program (will run only once :P)\n");
 
@@ -68,22 +73,13 @@ bool get_operation(char* operation) {
 bool perform_calculation(float* result, float lhs, float rhs, char operation) {
     switch (operation) {
     case '+':
-        *result = lhs + rhs;
-        return true;
+        return operation_add(result, lhs, rhs);
     case '-':
-        *result = lhs - rhs;
-        return true;
+        return operation_sub(result, lhs, rhs);
     case '*':
-        *result = lhs * rhs;
-        return true;
+        return operation_mul(result, lhs, rhs);
     case '/':
-        if rhs == 0.0 {
-            printf("Division by zero.\n");
-            return false;
-        }
-        
-        *result = lhs / rhs;
-        return true;
+        return operation_div(result, lhs, rhs);
     }
 
     printf("Unknown operation.\n");
@@ -101,4 +97,28 @@ bool is_valid_operation(char operation) {
     }
 
     return false;
+}
+
+bool operation_add(float* result, float lhs, float rhs) {
+    *result = lhs + rhs;
+    return true;
+}
+bool operation_sub(float* result, float lhs, float rhs) {
+    *result = lhs - rhs;
+    return true;
+}
+bool operation_mul(float* result, float lhs, float rhs) {
+    *result = lhs * rhs;
+    return true;
+}
+bool operation_div(float* result, float lhs, float rhs) {
+    // Checking floats with "==" is fine here because we're checking for
+    // division by zero, so only when rhs is exactly zero.
+    if (rhs == 0.0) {
+        printf("Division by Zero.\n");
+        return false;
+    }
+
+    *result = lhs / rhs;
+    return true;
 }
