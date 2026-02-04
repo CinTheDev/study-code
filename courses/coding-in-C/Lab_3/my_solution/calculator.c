@@ -77,6 +77,11 @@ bool perform_calculation(float* result, float lhs, float rhs, char operation) {
         *result = lhs * rhs;
         return true;
     case '/':
+        if rhs == 0.0 {
+            printf("Division by zero.\n");
+            return false;
+        }
+        
         *result = lhs / rhs;
         return true;
     }
