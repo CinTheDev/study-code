@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include <string.h>
 
 typedef enum {
     OP_ADD,
@@ -49,7 +48,8 @@ int main() {
         printf("Calculation failed.\n");
         return -1;
     }
-    printf("The result of %f %c %f = %f\n", lhs, operation, rhs, result);
+    char op_char = opertaion_to_char(operation);
+    printf("The result of %f %c %f = %f\n", lhs, op_char, rhs, result);
 
     return 0;
 }
