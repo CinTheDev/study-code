@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
 typedef enum {
     OP_ADD,
@@ -13,6 +14,9 @@ typedef enum {
 bool get_input_values(float* lhs, float* rhs);
 Operation get_operation();
 bool perform_calculation(float* result, float lhs, float rhs, Operation operation);
+
+bool read_float(float* value);
+bool read_char(char* c);
 
 Operation char_to_operation(char operation);
 char opertaion_to_char(Operation operation);
@@ -90,6 +94,30 @@ bool perform_calculation(float* result, float lhs, float rhs, Operation operatio
         printf("Undefined operation.\n");
         return false;
     }
+}
+
+bool read_float(float* value) {
+    // read from stdin
+    char buffer[64];
+    if (! fgets(buffer, sizeof(buffer), stdin)) {
+        return false;
+    }
+
+    // parse as float
+    if (scanf("%f", value) < 1) {
+        return false;
+    }
+
+    return true;
+}
+bool read_char(char* c) {
+    char buffer[2] = { '\0' };
+    if (! fgets(buffer, sizeof(buffer), stdin)) {
+        return false;
+    }
+
+    *c = buffer[0];
+    return true;
 }
 
 Operation char_to_operation(char operation) {
