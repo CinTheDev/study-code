@@ -21,7 +21,7 @@ int main() {
     }
 
     float result = perform_calculation(lhs, rhs, operation);
-    printf("Result: %f\n", result);
+    printf("The result of %f %c %f = %f\n", lhs, operation, rhs, result);
 
     return 0;
 }
