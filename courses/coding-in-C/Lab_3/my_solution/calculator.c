@@ -41,7 +41,7 @@ int main() {
     printf("Enter second number: ");
     float rhs = read_float();
 
-    if (isnanf(lhs)) {
+    if (isnanf(rhs)) {
         printf("Invalid number. Please enter a decimal number.\n");
         exit(1);
     }
