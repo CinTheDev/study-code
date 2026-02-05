@@ -62,6 +62,9 @@ float perform_calculation(float lhs, float rhs, Operation operation) {
         return operation_mul(lhs, rhs);
     case OP_DIV:
         return operation_div(lhs, rhs);
+    default:
+        printf("Unhandled operation enum.\n");
+        exit(1);
     }
 }
 
