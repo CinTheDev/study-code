@@ -9,7 +9,6 @@ typedef enum {
     OP_DIV,
 } Operation;
 
-void get_input_values(float* lhs, float* rhs);
 Operation get_operation();
 float perform_calculation(float lhs, float rhs, Operation operation);
 
@@ -27,9 +26,10 @@ float operation_div(float lhs, float rhs);
 int main() {
     printf("Calculator program\n");
 
-    float lhs = 0.0;
-    float rhs = 0.0;
-    get_input_values(&lhs, &rhs);
+    printf("Enter first number: ");
+    float lhs = read_float();
+    printf("Enter second number: ");
+    float rhs = read_float();
 
     Operation operation = get_operation();
     char op_char = opertaion_to_char(operation);
@@ -39,20 +39,6 @@ int main() {
     printf("The result of %f %c %f = %f\n", lhs, op_char, rhs, result);
 
     return 0;
-}
-
-void get_input_values(float* lhs, float* rhs) {
-    printf("Input first number: ");
-    if (! read_float(lhs)) {
-        printf("Invalid input. Please input a decimal number.\n");
-        exit(1);
-    }
-
-    printf("Input second number: ");
-    if (! read_float(rhs)) {
-        printf("Invalid input. Please input a decimal number.\n");
-        exit(1);
-    }
 }
 
 Operation get_operation() {
