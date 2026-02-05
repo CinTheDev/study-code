@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -28,10 +29,26 @@ int main() {
 
     printf("Enter first number: ");
     float lhs = read_float();
+
+    if (isnanf(lhs)) {
+        printf("Invalid number. Please enter a decimal number.\n");
+        exit(1);
+    }
+
     printf("Enter second number: ");
     float rhs = read_float();
 
+    if (isnanf(lhs)) {
+        printf("Invalid number. Please enter a decimal number.\n");
+        exit(1);
+    }
+
     Operation operation = get_operation();
+    if (operation == '\0') {
+        printf("Invalid input. Please input a valid operation [+, -, *, /].\n");
+        exit(1);
+    }
+
     char op_char = opertaion_to_char(operation);
 
     float result = perform_calculation(lhs, rhs, operation);
@@ -44,10 +61,6 @@ int main() {
 Operation get_operation() {
     printf("Select one operation [+, -, *, /]: ");
     char op_char = read_char();
-    //if (! ) {
-        //printf("Invalid input. Please input a valid operation [+, -, *, /].\n");
-        //exit(1);
-    //}
 
     return char_to_operation(op_char);
 }
@@ -73,7 +86,7 @@ float read_float() {
     char buffer[64];
     if (! fgets(buffer, sizeof(buffer), stdin)) {
         printf("Input failed.\n");
-        exit(1);
+        return NAN;
     }
 
     // parse as float
@@ -81,7 +94,7 @@ float read_float() {
     float value = strtof(buffer, &end);
     if (end == buffer) {
         printf("Could not parse '%s' as float.\n", buffer);
-        exit(1);
+        return NAN;
     }
 
     return value;
@@ -89,7 +102,7 @@ float read_float() {
 char read_char() {
     char buffer[2] = { '\0' };
     if (! fgets(buffer, sizeof(buffer), stdin)) {
-        exit(1);
+        return '\0';
     }
 
     return buffer[0];
@@ -139,8 +152,7 @@ float operation_div(float lhs, float rhs) {
     // Checking floats with "==" is fine here because we're checking for
     // division by zero, so only when rhs is exactly zero.
     if (rhs == 0.0) {
-        printf("Division by Zero.\n");
-        exit(1);
+        return NAN;
     }
 
     return lhs / rhs;
