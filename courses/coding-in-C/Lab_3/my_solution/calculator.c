@@ -56,6 +56,11 @@ int main() {
 
     float result = perform_calculation(lhs, rhs, operation);
 
+    if (isnanf(result)) {
+        printf("Division by zero.\n");
+        exit(1);
+    }
+
     printf("The result of %f %c %f = %f\n", lhs, op_char, rhs, result);
 
     return 0;
