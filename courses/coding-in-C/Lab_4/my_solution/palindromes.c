@@ -16,10 +16,10 @@ bool is_palindrome_case_sensitive(char* str) {
     int str_len = strlen(str);
 
     for (int i = 0; i < str_len; i++) {
-        char* p_front = str + i;
-        char* p_back = str + (str_len - i - 1);
+        char c_front = str[i];
+        char c_back = str[str_len - i - 1];
 
-        if (*p_front != *p_back) {
+        if (c_front != c_back) {
             return false;
         }
     }
@@ -31,13 +31,10 @@ bool is_palindrome_case_insensitive(char* str) {
     int str_len = strlen(str);
 
     for (int i = 0; i < str_len; i++) {
-        char* p_front = str + i;
-        char* p_back = str + (str_len - i - 1);
+        char c_front = str[i];
+        char c_back = str[str_len - i - 1];
 
-        char c_front = tolower(*p_front);
-        char c_back = tolower(*p_back);
-
-        if (c_front != c_back) {
+        if ( tolower(c_front) != tolower(c_back) ) {
             return false;
         }
     }
