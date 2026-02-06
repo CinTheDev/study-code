@@ -12,7 +12,7 @@ bool read_word(char* str, int max_len) {
     return result;
 }
 
-bool is_palindrome_case_sensitive(char* str) {
+bool is_palindrome_case_sensitive(const char* str) {
     int str_len = strlen(str);
 
     for (int i = 0; i < str_len; i++) {
@@ -27,7 +27,7 @@ bool is_palindrome_case_sensitive(char* str) {
     return true;
 }
 
-bool is_palindrome_case_insensitive(char* str) {
+bool is_palindrome_case_insensitive(const char* str) {
     int str_len = strlen(str);
 
     for (int i = 0; i < str_len; i++) {
