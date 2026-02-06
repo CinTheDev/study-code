@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
+#include <ctype.h>
 
 bool read_word(char* str, int max_len) {
     bool result = fgets(str, max_len, stdin);
@@ -26,6 +27,24 @@ bool is_palindrome_case_sensitive(char* str) {
     return true;
 }
 
+bool is_palindrome_case_insensitive(char* str) {
+    int str_len = strlen(str);
+
+    for (int i = 0; i < str_len; i++) {
+        char* p_front = str + i;
+        char* p_back = str + (str_len - i - 1);
+
+        char c_front = tolower(*p_front);
+        char c_back = tolower(*p_back);
+
+        if (c_front != c_back) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 int main() {
     printf("Enter a word: ");
 
@@ -34,7 +53,7 @@ int main() {
         printf("Failed to read word.\n");
     }
 
-    if (is_palindrome_case_sensitive(buffer)) {
+    if (is_palindrome_case_insensitive(buffer)) {
         printf("Your word \"%s\" IS a palindrome!\n", buffer);
     }
     else {
