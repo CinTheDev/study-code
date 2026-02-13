@@ -1,7 +1,13 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #define SPACE_SIZE 10
+
+void init_rng(void) {
+    srand(time(NULL));
+}
 
 int clamp(int value, int min, int max) {
     if (value < min) {
@@ -14,10 +20,17 @@ int clamp(int value, int min, int max) {
     return value;
 }
 
-void simulate_timestep(const int *p_space, int *p_next, int size) {
+int get_particle_offset() {
+    // randomly get either -1 or +1
+    if (rand() % 2) {
+        return 1;
+    }
+    else {
+        return -1;
+    }
+}
 
-    // particles always move right
-    // TODO: Make them move randomly
+void simulate_timestep(const int *p_space, int *p_next, int size) {
     for (int i = 0; i < size; i++) {
         int particle = p_space[i];
 
@@ -25,7 +38,10 @@ void simulate_timestep(const int *p_space, int *p_next, int size) {
             continue;
         }
 
-        int new_position = clamp(i + 1, 0, size-1);
+        int new_position = i + get_particle_offset();
+
+        // ensure particle doesn't go out of bounds
+        new_position = clamp(new_position, 0, size-1);
 
         // if there's already a particle at the new position
         if (p_next[new_position]) {
@@ -68,6 +84,8 @@ void print_space(const int *p_space, int size, int timestep) {
 }
 
 int main(void) {
+    init_rng();
+
     int space[SPACE_SIZE] = { 0 };
     int *p_space = space;
 
