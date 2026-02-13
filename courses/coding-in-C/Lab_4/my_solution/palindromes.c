@@ -15,7 +15,7 @@ bool read_word(char* str, int max_len) {
 bool is_palindrome_case_sensitive(const char* str) {
     int str_len = strlen(str);
 
-    for (int i = 0; i < str_len; i++) {
+    for (int i = 0; i < str_len / 2; i++) {
         char c_front = str[i];
         char c_back = str[str_len - i - 1];
 
@@ -30,7 +30,7 @@ bool is_palindrome_case_sensitive(const char* str) {
 bool is_palindrome_case_insensitive(const char* str) {
     int str_len = strlen(str);
 
-    for (int i = 0; i < str_len; i++) {
+    for (int i = 0; i < str_len / 2; i++) {
         char c_front = str[i];
         char c_back = str[str_len - i - 1];
 
