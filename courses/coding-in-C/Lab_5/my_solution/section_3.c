@@ -1,3 +1,8 @@
+/*
+ * File: section_3.c
+ * Description: Lab5 Section III implementation
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,10 +10,25 @@
 
 #define SPACE_SIZE 10
 
+/**
+ * @brief Must be called at startup to initialize RNG
+ */
 void init_rng(void) {
     srand(time(NULL));
 }
 
+/**
+ * @brief Makes sure `value` is inside the given bounds
+ *
+ * If `value` is within bounds, the value is returned. If it's e.g. lower than
+ * `min`, `min` is returned instead. The returned value is never outside these
+ * bounds.
+ *
+ * @param[in] value Given value
+ * @param[in] min   Lower bound
+ * @param[in] max   Upper bound
+ * @return          `value` clamped between the bounds
+ */
 int clamp(int value, int min, int max) {
     if (value < min) {
         return min;
@@ -20,8 +40,15 @@ int clamp(int value, int min, int max) {
     return value;
 }
 
-int get_particle_offset() {
-    // randomly get either -1 or +1
+/**
+ * @brief Randomly returns either -1 or +1
+ *
+ * This function can be called multiple times consecutively, the return value
+ * will be random every time.
+ *
+ * @return Randomly -1 or +1
+ */
+int get_particle_offset(void) {
     if (rand() % 2) {
         return 1;
     }
@@ -30,6 +57,18 @@ int get_particle_offset() {
     }
 }
 
+/**
+ * @brief Simulate a timestep in `p_space`, writing the result into p_next
+ *
+ * Particles (denoted by a 1) will randomly move either left or right. In case
+ * two particles land on the same spot, they will anihilate each other, leaving
+ * only a blank space (denoted by a 0). There will also be a print message on
+ * collision.
+ *
+ * @param[in]  p_space Given space of particles
+ * @param[out] p_next  Resulting particle positions
+ * @param[in]  size    Array length of `p_space` and `p_next`
+ */
 void simulate_timestep(const int *p_space, int *p_next, int size) {
     for (int i = 0; i < size; i++) {
         int particle = p_space[i];
@@ -54,6 +93,12 @@ void simulate_timestep(const int *p_space, int *p_next, int size) {
     }
 }
 
+/**
+ * @brief Get the amount of particles in `p_space`
+ *
+ * @param[in] p_space Given space of particles
+ * @param[in] size    Array length of `p_space`
+ */
 int amount_particles(const int *p_space, int size) {
     int amount_particles = 0;
 
@@ -68,6 +113,13 @@ int amount_particles(const int *p_space, int size) {
     return amount_particles;
 }
 
+/**
+ * @brief Print a formated version of `p_space` including timestep and indices.
+ *
+ * @param[in] p_space  Given space of particles
+ * @param[in] size     Array length of `p_space`
+ * @param[in] timestep Current timestep
+ */
 void print_space(const int *p_space, int size, int timestep) {
     printf("T = %d\n", timestep);
     printf("i: ");
