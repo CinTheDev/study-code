@@ -67,13 +67,17 @@ int main(void) {
 
     int timestep = 0;
 
-    while (true) {
-        print_space(space, SPACE_SIZE, timestep++);
+    print_space(space, SPACE_SIZE, timestep);
 
+    while (true) {
         int space_next[SPACE_SIZE] = { 0 };
         simulate_timestep(p_space, space_next, SPACE_SIZE);
-
+        
         memcpy(space, space_next, sizeof(space));
+
+        timestep++;
+
+        print_space(space, SPACE_SIZE, timestep);
 
         if (amount_particles(space, SPACE_SIZE) < 2) {
             break;
