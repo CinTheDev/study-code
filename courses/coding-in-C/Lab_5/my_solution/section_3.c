@@ -42,7 +42,8 @@ int amount_particles(const int *p_space, int size) {
     return amount_particles;
 }
 
-void print_space(const int *p_space, int size) {
+void print_space(const int *p_space, int size, int timestep) {
+    printf("T = %d\n", timestep);
     printf("i: ");
     for (int i = 0; i < size; i++) {
         printf("%d ", i);
@@ -67,8 +68,7 @@ int main(void) {
     int timestep = 0;
 
     while (true) {
-        printf("T = %d\n", timestep++);
-        print_space(space, SPACE_SIZE);
+        print_space(space, SPACE_SIZE, timestep++);
 
         int space_next[SPACE_SIZE] = { 0 };
         simulate_timestep(p_space, space_next, SPACE_SIZE);
