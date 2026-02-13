@@ -1,3 +1,8 @@
+/*
+ * File: section_1.c
+ * Description: Lab 5 Section I implementation
+ */
+
 #include <stdio.h>
 
 int main(void) {

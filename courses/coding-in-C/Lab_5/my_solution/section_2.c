@@ -1,3 +1,8 @@
+/*
+ * File: section_2.c
+ * Description: Lab 5 Section II implementation
+ */
+
 #include <stdio.h>
 #include <string.h>
 
