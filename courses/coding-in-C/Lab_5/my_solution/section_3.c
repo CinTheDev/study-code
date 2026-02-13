@@ -69,7 +69,7 @@ int main(void) {
 
     print_space(space, SPACE_SIZE, timestep);
 
-    while (true) {
+    while (amount_particles(space, SPACE_SIZE) > 1) {
         int space_next[SPACE_SIZE] = { 0 };
         simulate_timestep(p_space, space_next, SPACE_SIZE);
         
@@ -78,10 +78,6 @@ int main(void) {
         timestep++;
 
         print_space(space, SPACE_SIZE, timestep);
-
-        if (amount_particles(space, SPACE_SIZE) < 2) {
-            break;
-        }
     }
 
     printf("finished\n");
